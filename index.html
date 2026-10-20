@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#123c64"><meta name="description" content="漏水調査・入札参加資格申請の管理">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>入札申請ナビ</title><link rel="stylesheet" href="./style.css"></head>
+<body><header><div class="wrap head"><div><span class="eyebrow">漏水調査・入札参加資格</span><h1>💧 入札申請ナビ</h1></div><span class="tag">第1週・試作版</span></div></header>
+<main class="wrap">
+<section class="intro"><h2>申請スケジュール管理</h2><p>自治体を登録して、申請期間・確認状況を整理できます。データはこの端末のブラウザ内に保存されます。</p></section>
+<section class="stats" id="stats" aria-label="集計"></section>
+<section class="toolbar"><label class="search"><span>自治体を検索</span><input id="search" placeholder="例：岡山、浜松、水道局"></label>
+<label><span>表示</span><select id="filter"><option value="all">すべて</option><option value="fav">お気に入り</option><option value="open">受付中</option><option value="soon">締切30日以内</option><option value="unknown">未確認・未公表</option></select></label>
+<label><span>並び替え</span><select id="sort"><option value="name">自治体名</option><option value="deadline">締切が近い順</option><option value="updated">更新順</option></select></label></section>
+<div class="actions"><button id="add" class="primary">＋ 自治体を追加</button><button id="export">データをバックアップ（JSON）</button><label class="filebtn">バックアップを復元<input id="import" type="file" accept=".json,application/json" hidden></label><button id="csv">CSV出力</button></div>
+<p class="note">※ 初期データは管理対象の例です。申請期間・公式URLは未確認のため空欄です。自治体・水道事業体は必要に応じて追加してください。</p>
+<section id="list" class="cards" aria-live="polite"></section>
+</main>
+<dialog id="editor"><form id="editform"><h2 id="formtitle">自治体を登録</h2><input id="id" type="hidden">
+<label>自治体・発注機関名 <input id="name" required maxlength="100" placeholder="例：岡山市水道局"></label>
+<label>都道府県 <input id="pref" required maxlength="30" placeholder="例：岡山県"></label>
+<div class="two"><label>受付開始日 <input id="start" type="date"></label><label>申請締切日 <input id="end" type="date"></label></div>
+<label>確認状況 <select id="status"><option value="未確認">未確認</option><option value="未公表">未公表</option><option value="受付予定">受付予定</option><option value="受付中">受付中</option><option value="受付終了">受付終了</option><option value="確認済み">確認済み</option></select></label>
+<label>公式情報URL <input id="url" type="url" placeholder="https://..."></label>
+<label>最終確認日 <input id="checked" type="date"></label>
+<label>メモ <textarea id="memo" rows="3" placeholder="申請区分、営業品目、必要書類など"></textarea></label>
+<div class="dialogactions"><button type="button" id="cancel">キャンセル</button><button class="primary" type="submit">保存</button></div></form></dialog>
+<footer class="wrap">試作版 v0.1 — Google Drive・Googleカレンダーとの自動連携は第2週以降に実装予定です。</footer>
+<script src="./app.js" defer></script></body></html>
